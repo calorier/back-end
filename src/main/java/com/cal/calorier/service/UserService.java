@@ -3,9 +3,10 @@ package com.cal.calorier.service;
 import com.cal.calorier.dao.UserRepository;
 import com.cal.calorier.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class UserService {
     @Autowired
     UserRepository userRepository;
@@ -24,4 +25,10 @@ public class UserService {
         List<User> userList = userRepository.findAll();
         return userList;
     }
+    //查询用户名列表
+    public List<User> getUserNameList(String username){
+        List<User> userList = userRepository.findByUsername(username);
+        return userList;
+    }
+    //
 }

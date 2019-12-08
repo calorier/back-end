@@ -14,7 +14,7 @@ public class Record {
     @Column(name = "time")
     String time;
     @Column(name = "isdelete")
-    int isdelete;
+    int isdelete;//0为未删除，1为删除
 
     public Record() {
     }

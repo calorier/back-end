@@ -3,7 +3,9 @@ package com.cal.calorier.service;
 import com.cal.calorier.dao.RecordRepository;
 import com.cal.calorier.entity.Record;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RecordService {
     @Autowired
     RecordRepository recordRepository;
