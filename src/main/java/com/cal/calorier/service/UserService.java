@@ -30,5 +30,13 @@ public class UserService {
         List<User> userList = userRepository.findByUsername(username);
         return userList;
     }
-    //
+    //修改密码
+    public void changePassword(String username,String newpassword) {
+        userRepository.updateUser(username,newpassword);
+    }
+    //修改用户信息
+    public void changeUserInfo(String username, String eamil, String avatar, String phone){
+        userRepository.updateUserInfo(username, eamil, avatar, phone);
+    }
+
 }
