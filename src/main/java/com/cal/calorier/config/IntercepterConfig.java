@@ -18,14 +18,14 @@ public class IntercepterConfig implements WebMvcConfigurer {
     }
     @Override
     public void addInterceptors(InterceptorRegistry registry){
-//        //admin
-//        String addPathPattern1="/apis/mandarin/admin/**";
-//        String [] excludePath1={
-//                "/apis/mandarin/admin/login"
-//        };
-//        registry.addInterceptor(tokenInterceptor)
-//                .addPathPatterns(addPathPattern1)
-//                .excludePathPatterns(excludePath1);
-//        WebMvcConfigurer.super.addInterceptors(registry);
+        //user
+        String addPathPattern1="/calorier/apis/v1**";
+        String [] excludePath1={
+                "/calorier/apis/v1/uploadfood"
+        };
+        registry.addInterceptor(tokenInterceptor)
+                .addPathPatterns(addPathPattern1)
+                .excludePathPatterns(excludePath1);
+        WebMvcConfigurer.super.addInterceptors(registry);
     }
 }

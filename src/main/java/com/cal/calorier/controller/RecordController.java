@@ -9,6 +9,7 @@ import com.cal.calorier.service.RecordService;
 import com.cal.calorier.service.UserService;
 import com.cal.calorier.util.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +20,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
-
+@Controller
+@RequestMapping("/calorier/apis/v1")
 public class RecordController {
   @Autowired private UserService userService;
   @Autowired private FoodService foodService;
@@ -48,7 +50,7 @@ public class RecordController {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    //        recordService.addHistory(userid,foodid,time,0);
+    //recordService.addHistory(userid,foodid,time,0);
     return null;
   }
   // 2.获取用户日历史列表
