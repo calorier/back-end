@@ -1,5 +1,8 @@
 package com.cal.calorier.entity;
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name="user")
 public class User {
@@ -19,6 +22,10 @@ public class User {
     String phone;
     @Column(name = "createtime")
     String createtime;
+    //一对多(User Record)
+    @OneToMany(targetEntity=Record.class)
+    @JoinColumn(name = "userid",referencedColumnName = "id")
+    private Set<Record> records = new HashSet<Record>(0);
 
     public User() {
     }

@@ -1,5 +1,8 @@
 package com.cal.calorier.entity;
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name="food")
 public class Food {
@@ -11,12 +14,25 @@ public class Food {
     String foodname;
     @Column(name = "ingredient")
     String ingredient;
-    @Column(name = "calorie")
-    double calorie;//以g为单位
+//    @Column(name = "calorie")
+//    double calorie;//以g为单位
     @Column(name = "information")
     String information;
     @Column(name = "link")
     String link;
+
+    //一对多(Food Record)
+    @OneToMany(targetEntity=Record.class)
+    @JoinColumn(name = "foodid",referencedColumnName = "id")
+    private Set<Record> records = new HashSet<Record>(0);
+
+    //多对多(Food Ingredient)
+    @ManyToMany
+    @JoinTable(name="food_ingre",
+            joinColumns= {@JoinColumn(name="foodid",referencedColumnName="id")},
+            //用于指定对方表在中间表的字段名称，以及中间表依赖的是它的哪个字段
+            inverseJoinColumns= {@JoinColumn(name="ingredientid",referencedColumnName="id")})
+    private Set<Ingredient> ingredients = new HashSet<Ingredient>();
 
     public Food() {
     }
@@ -24,7 +40,7 @@ public class Food {
     public Food(String foodname, String ingredient, double calorie, String information, String link) {
         this.foodname = foodname;
         this.ingredient = ingredient;
-        this.calorie = calorie;
+//        this.calorie = calorie;
         this.information = information;
         this.link = link;
     }
@@ -45,13 +61,13 @@ public class Food {
         this.ingredient = ingredient;
     }
 
-    public double getCalorie() {
-        return calorie;
-    }
-
-    public void setCalorie(double calorie) {
-        this.calorie = calorie;
-    }
+//    public double getCalorie() {
+//        return calorie;
+//    }
+//
+//    public void setCalorie(double calorie) {
+//        this.calorie = calorie;
+//    }
 
     public String getInformation() {
         return information;
@@ -83,7 +99,7 @@ public class Food {
                 "id=" + id +
                 ", foodname='" + foodname + '\'' +
                 ", ingredient='" + ingredient + '\'' +
-                ", calorie=" + calorie +
+//                ", calorie=" + calorie +
                 ", information='" + information + '\'' +
                 ", link='" + link + '\'' +
                 '}';
